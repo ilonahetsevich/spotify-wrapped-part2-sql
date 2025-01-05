@@ -73,4 +73,74 @@ Part 2. Analyzing Spotify Data Using SQL
 <i> <b> Disclaimer: </b> I analyzed 8 years of Spotify data, but since the data was requested on December 6th, 2024, I didn't have any information for the remaining days of December. Rather than excluding December entirely and limiting the analysis to overlapping months across all years, I chose to use metrics like average listening time per day. This approach accounts for variations in the number of active days, normalizes the data, and ensures fair comparisons between years.</i>
 </blockquote>
 
+<h5>Script to pull yearly stats:</h5> 
 
+```sql
+SELECT  YEAR,
+        COUNT(*) AS nb_tracks_total,
+        COUNT(SPOTIFY_TRACK_URI) AS nb_music_tracks_total,
+        COUNT(SPOTIFY_EPISODE_URI) AS nb_podcasts_total,
+        ROUND(SUM(MIN_PLAYED)) AS minutes_played,
+        ROUND(SUM(MIN_PLAYED)/60,2) AS hours_played,
+        ROUND(SUM(MIN_PLAYED)/ COUNT(DISTINCT date),2) AS minutes_played_per_day,
+        ROUND(SUM(MIN_PLAYED)/60 / COUNT(DISTINCT date),2) AS hours_played_per_day,
+        COUNT(DISTINCT ARTIST_NAME) AS unique_artists, 
+        COUNT(DISTINCT SPOTIFY_TRACK_URI) AS unique_music_tracks,
+        COUNT(DISTINCT EPISODE_SHOW_NAME) AS unique_podcast_shows,
+        COUNT(DISTINCT SPOTIFY_EPISODE_URI) AS unique_podcast_episodes,
+        ROUND(COUNT(SPOTIFY_TRACK_URI) / NULLIF(COUNT(DISTINCT SPOTIFY_TRACK_URI),0),2) AS avg_plays_per_music_track,
+        ROUND(COUNT(SPOTIFY_EPISODE_URI) / NULLIF(COUNT(DISTINCT SPOTIFY_EPISODE_URI),0),2) AS avg_plays_per_podcast_episode,
+        ROUND(SUM(CASE WHEN SPOTIFY_TRACK_URI IS NOT NULL THEN MIN_PLAYED END)) AS minuted_played_music,
+        ROUND(SUM(CASE WHEN SPOTIFY_EPISODE_URI IS NOT NULL THEN MIN_PLAYED END)) AS minuted_played_podcasts,
+        ROUND(SUM(CASE WHEN SPOTIFY_TRACK_URI IS NOT NULL THEN MIN_PLAYED END)/ NULLIF(ROUND(SUM(MIN_PLAYED)),0)*100,2) AS perc_minuted_played_music_of_total,
+        ROUND(SUM(CASE WHEN SPOTIFY_EPISODE_URI IS NOT NULL THEN MIN_PLAYED END)/NULLIF(ROUND(SUM(MIN_PLAYED)),0)*100,2) AS perc_minuted_played_podcasts_of_total
+FROM "SAMPLE_SCHEMA"."PUBLIC"."SPOTIFY_WRAPPED"
+GROUP BY YEAR
+ORDER BY YEAR ASC;
+```
+
+<h5>Script to pull year-over-year changes:</h5> 
+
+```sql
+WITH yearly_metrics AS (
+SELECT  YEAR,
+        COUNT(*) AS nb_tracks_total,
+        COUNT(SPOTIFY_TRACK_URI) AS nb_music_tracks_total,
+        COUNT(SPOTIFY_EPISODE_URI) AS nb_podcasts_total,
+        ROUND(SUM(MIN_PLAYED)) AS minutes_played,
+        ROUND(SUM(MIN_PLAYED)/60,2) AS hours_played,
+        ROUND(SUM(MIN_PLAYED)/ COUNT(DISTINCT date),2) AS minutes_played_per_day,
+        ROUND(SUM(MIN_PLAYED)/60 / COUNT(DISTINCT date),2) AS hours_played_per_day,
+        COUNT(DISTINCT ARTIST_NAME) AS unique_artists, 
+        COUNT(DISTINCT SPOTIFY_TRACK_URI) AS unique_music_tracks,
+        COUNT(DISTINCT EPISODE_SHOW_NAME) AS unique_podcast_shows,
+        COUNT(DISTINCT SPOTIFY_EPISODE_URI) AS unique_podcast_episodes,
+        ROUND(COUNT(SPOTIFY_TRACK_URI) / NULLIF(COUNT(DISTINCT SPOTIFY_TRACK_URI),0),2) AS avg_plays_per_music_track,
+        ROUND(COUNT(SPOTIFY_EPISODE_URI) / NULLIF(COUNT(DISTINCT SPOTIFY_EPISODE_URI),0),2) AS avg_plays_per_podcast_episode,
+        ROUND(SUM(CASE WHEN SPOTIFY_TRACK_URI IS NOT NULL THEN MIN_PLAYED END)) AS minuted_played_music,
+        ROUND(SUM(CASE WHEN SPOTIFY_EPISODE_URI IS NOT NULL THEN MIN_PLAYED END)) AS minuted_played_podcasts,
+        ROUND(SUM(CASE WHEN SPOTIFY_TRACK_URI IS NOT NULL THEN MIN_PLAYED END)/ NULLIF(ROUND(SUM(MIN_PLAYED)),0)*100,2) AS perc_minuted_played_music_of_total,
+        ROUND(SUM(CASE WHEN SPOTIFY_EPISODE_URI IS NOT NULL THEN MIN_PLAYED END)/NULLIF(ROUND(SUM(MIN_PLAYED)),0)*100,2) AS perc_minuted_played_podcasts_of_total
+
+FROM "SAMPLE_SCHEMA"."PUBLIC"."SPOTIFY_WRAPPED"
+GROUP BY YEAR
+)
+SELECT
+    YEAR,
+    ROUND(((nb_tracks_total - LAG(nb_tracks_total) OVER (ORDER BY YEAR)) / NULLIF(LAG(nb_tracks_total) OVER (ORDER BY YEAR), 0)) * 100, 2) AS nb_tracks_total_yoy_change,
+    ROUND(((minutes_played - LAG(minutes_played) OVER (ORDER BY YEAR)) / NULLIF(LAG(minutes_played) OVER (ORDER BY YEAR), 0)) * 100, 2) AS minutes_played_yoy_change,
+    ROUND(((hours_played - LAG(hours_played) OVER (ORDER BY YEAR)) / NULLIF(LAG(hours_played) OVER (ORDER BY YEAR), 0)) * 100, 2) AS hours_played_yoy_change,
+    ROUND(((unique_artists - LAG(unique_artists) OVER (ORDER BY YEAR)) / NULLIF(LAG(unique_artists) OVER (ORDER BY YEAR), 0)) * 100, 2) AS unique_artists_yoy_change,
+    ROUND(((unique_music_tracks - LAG(unique_music_tracks) OVER (ORDER BY YEAR)) / NULLIF(LAG(unique_music_tracks) OVER (ORDER BY YEAR), 0)) * 100, 2) AS unique_music_tracks_yoy_change,
+    ROUND(((unique_podcast_shows - LAG(unique_podcast_shows) OVER (ORDER BY YEAR)) / NULLIF(LAG(unique_podcast_shows) OVER (ORDER BY YEAR), 0)) * 100, 2) AS unique_podcast_shows_yoy_change,
+    ROUND((( unique_podcast_episodes - LAG( unique_podcast_episodes) OVER (ORDER BY YEAR)) / NULLIF(LAG( unique_podcast_episodes) OVER (ORDER BY YEAR), 0)) * 100, 2) AS  unique_podcast_episodes_yoy_change,
+    ROUND(((avg_plays_per_music_track - LAG(avg_plays_per_music_track) OVER (ORDER BY YEAR)) / NULLIF(LAG(avg_plays_per_music_track) OVER (ORDER BY YEAR), 0)) * 100, 2) AS avg_plays_per_music_track_yoy_change,
+    ROUND(((avg_plays_per_podcast_episode - LAG(avg_plays_per_podcast_episode) OVER (ORDER BY YEAR)) / NULLIF(LAG(avg_plays_per_podcast_episode) OVER (ORDER BY YEAR), 0)) * 100, 2) AS avg_plays_per_podcast_episode_yoy_change,
+    ROUND(((minuted_played_music - LAG(minuted_played_music) OVER (ORDER BY YEAR)) / NULLIF(LAG(minuted_played_music) OVER (ORDER BY YEAR), 0)) * 100, 2) AS minuted_played_music_yoy_change,
+    ROUND(((minuted_played_podcasts - LAG(minuted_played_podcasts) OVER (ORDER BY YEAR)) / NULLIF(LAG(minuted_played_podcasts) OVER (ORDER BY YEAR), 0)) * 100, 2) AS minuted_played_podcasts_yoy_change
+FROM yearly_metrics
+ORDER BY YEAR ASC;
+
+```
+
+<br />
