@@ -588,3 +588,37 @@ ORDER BY total_hours_played DESC;
 
     
 ---
+
+
+<h3> 
+&nbsp;&nbsp;&nbsp;&nbsp; 2.3 My Top Podcast Over the Years<br />
+&nbsp;&nbsp;&nbsp;&nbsp; 2.3.1 Most-Listened Podcasts
+</h3>
+
+<h5>Script to retrieve the correlation between tracks and listening hours:</h5> 
+
+```sql
+SELECT DISTINCT EPISODE_SHOW_NAME,
+YEAR,
+ROUND(SUM(MIN_PLAYED),2) AS minutes_played
+FROM "SAMPLE_SCHEMA"."PUBLIC"."SPOTIFY_WRAPPED"
+GROUP BY YEAR, EPISODE_SHOW_NAME
+HAVING ROUND(SUM(MIN_PLAYED)) > 100
+AND EPISODE_SHOW_NAME IS NOT NULL;
+
+```
+
+
+
+<h3>💡 Learnings:</h3>
+
+<p>My podcast listening habits show a clear pattern of consistent engagement with a few favorite shows, like the “Espresso English Podcast” and “Science Vs,” while also exploring new ones from time to time. When I find a podcast I like, I tend to stick with it rather than constantly switching to new ones.</p>
+<p>Looking at the different stages over the years, I can pinpoint the shifts in my interests. In 2018-2019, I was focused on podcasts for learning English. During 2020-2021, my focus shifted to Science topics, and from 2022-2023, I leaned more into Psychology podcasts. Now, I find myself diving into podcasts about Data and listening to Russian-language podcasts covering a wide range of topics</p>
+<p>This progression reflects how my listening preferences evolve over time, driven by changing interests.</p>
+
+<p align="center">
+<img src="/images/podcasts.png" />
+<br />
+
+    
+---
