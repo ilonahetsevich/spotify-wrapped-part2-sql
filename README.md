@@ -147,10 +147,6 @@ ORDER BY YEAR ASC;
 
 
 
-
----
-
-
 <h3>💡 Learnings:</h3>
 <p> I was most active in Spotify listening around 2018–2019, with a gradual decline in recent years. My peak listening year was 2019, when I spent an average of <b>2.2 hours per day</b> on Spotify. Starting in 2020, with the onset of the pandemic and the shift to remote work, my listening time began to decline steadily, reaching <b>1.24 hours/day in 2024 - a 43.6% drop</b> compared to the peak in 2019.</p>
 <p>Podcasts have become an increasingly important part of my listening habits, though they remain secondary to music. Their share of total listening time grew from <b>3.12% in 2018 to 7.16%</b> in 2024, indicating a consistent increase in interest. Notably, the time I spent listening to podcasts <b>skyrocketed by 169%</b> in 2020, likely driven by lifestyle changes during the pandemic.</p>
@@ -163,7 +159,36 @@ ORDER BY YEAR ASC;
 <img src="/images/1.1listening_trends_over_time.png" />
 <br />
 
+---
 
 
+<h4>1.2 Yearly Spotify Listening Trends</h4>
 
 
+<h5>Script to pull monthly listening stats:</h5> 
+
+```sql
+SELECT
+    YEAR,
+    MONTH,
+    CASE 
+        WHEN MONTH IN (1,2,12) THEN 'Winter'
+        WHEN MONTH IN (3,4,5) THEN 'Spring'
+        WHEN MONTH IN (6,7,8) THEN 'Summer'
+        ELSE 'Autumn'
+    END AS season,
+    ROUND(SUM(MIN_PLAYED)/60,2) AS hours_played
+FROM "SAMPLE_SCHEMA"."PUBLIC"."SPOTIFY_WRAPPED"
+GROUP BY YEAR, MONTH, season
+ORDER BY YEAR, MONTH, season ASC;
+
+```
+
+<h3>💡 Learnings:</h3>
+<p>My listening habits remain fairly consistent across the seasons, but Summer and Winter tend to dominate overall, reflecting increased activity during holidays and colder months. External factors, such as lifestyle changes or major events, also play a significant role. For instance, in 2020, Spring led with 35.05% of my total listening time, likely due to spending more time indoors during the pandemic. In 2024, Winter reclaimed the top spot (32.93% of total listening time), driven by my heavy running load during that season.</p>
+
+<p align="center">
+<img src="/images/1.2listening_by_season.png" />
+<br />
+
+---
