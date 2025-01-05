@@ -30,12 +30,34 @@ Part 2. Analyzing Spotify Data Using SQL
 - How does Spotify fit into my daily routine - background noise, focused listening, or exploring new music?
 
 ## Table of Contents
-- [Listening Trends Over Time](#listening-trends-over-time----------yearly-spotify-listening-trends)
-- [How to Customize Markdown files?](#how-to-customize-markdown-files)
-- [How to Create New Repository?](#how-to-create-new-repository)
-- [How to Create Subfolders in your Repository?](#how-to-create-subfolders-in-your-repository)
-- [How to Upload Projects in your Repository?](#how-to-upload-projects-in-your-repository)
-- [How to Fork a Repository?](#how-to-fork-a-repository)
+
+
+
+1. [Listening Trends Over Time](#listening-trends-over-time----------yearly-spotify-listening-trends)
+    1. [Yearly Spotify Listening Trends](#listening-trends-over-time----------yearly-spotify-listening-trends)
+    2. [Monthly Listening Patterns](#listening-trends-over-time----------yearly-spotify-listening-trends)
+    3. [Weekly Listening Habits](#listening-trends-over-time----------yearly-spotify-listening-trends)
+    4. [Listening Habits by Time of Day](#listening-trends-over-time----------yearly-spotify-listening-trends)     
+2. [Artists, Songs, and Genrese](#listening-trends-over-time----------yearly-spotify-listening-trends)
+    1. [Skipping Behavior](#listening-trends-over-time----------yearly-spotify-listening-trends)
+        1. [When Do I Skip?](#listening-trends-over-time----------yearly-spotify-listening-trends)
+        2. [Most Skipped Genres](#listening-trends-over-time----------yearly-spotify-listening-trends)
+        3. [Songs I Skip the Most](#listening-trends-over-time----------yearly-spotify-listening-trends)
+    2. [Skipping Behavior](#listening-trends-over-time----------yearly-spotify-listening-trends)
+        1. [When Do I Skip?](#listening-trends-over-time----------yearly-spotify-listening-trends)
+        2. [Most Skipped Genres](#listening-trends-over-time----------yearly-spotify-listening-trends)
+        3. [Songs I Skip the Most](#listening-trends-over-time----------yearly-spotify-listening-trends)
+    3. [Skipping Behavior](#listening-trends-over-time----------yearly-spotify-listening-trends)
+        1. [When Do I Skip?](#listening-trends-over-time----------yearly-spotify-listening-trends)
+        2. [Most Skipped Genres](#listening-trends-over-time----------yearly-spotify-listening-trends)
+        3. [Songs I Skip the Most](#listening-trends-over-time----------yearly-spotify-listening-trends)
+    4. [Skipping Behavior](#listening-trends-over-time----------yearly-spotify-listening-trends)
+    5. [Skipping Behavior](#listening-trends-over-time----------yearly-spotify-listening-trends)
+3. [Artists, Songs, and Genrese](#listening-trends-over-time----------yearly-spotify-listening-trends)
+    1. [Yearly Spotify Listening Trends](#listening-trends-over-time----------yearly-spotify-listening-trends)
+    2. [Monthly Listening Patterns](#listening-trends-over-time----------yearly-spotify-listening-trends)
+  
+
 
 <h2>Project walk-through:</h2>
 
