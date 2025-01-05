@@ -4,9 +4,16 @@
 <br />
 Part 2. Analyzing Spotify Data Using SQL
 </h1>
+<br />
+<blockquote style="background-color: #f0f0f0; padding: 15px; border-left: 5px solid #ccc; font-style: italic;">
+<i> This is the second part of the project. For the 1st one please refer to:
+<br />
+    
+[Spotify Wrapped: A Deep Dive Into 8 Years of Data. Part 1. Retrieving Data From Spotify Using Python and Spotify API](https://github.com/ilonahetsevich/spotify-wrapped-part1-python/tree/main) 
 
-
-
+</i>
+</blockquote>
+<br />
 <h2>Description</h2>
 
 <p><b>Objective:</b> To analyze my Spotify listening habits over the past 8 years, uncovering how they have evolved over time, what influences these changes, and what they reveal about my music preferences and behaviors.</p>
