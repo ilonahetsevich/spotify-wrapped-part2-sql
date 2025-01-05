@@ -275,3 +275,40 @@ ORDER BY 1,2,3,4,5,6;
 &nbsp;&nbsp;&nbsp;&nbsp; 2.1. Skipping Behavior<br />
 &nbsp;&nbsp;&nbsp;&nbsp; 2.1.1 Device-Specific Skipping Patterns 
 </h3>
+
+<h5>Script to pull listening stats by time of day:</h5> 
+
+```sql
+SELECT 
+        SKIPPED,
+        COUNT(*) AS nb_tracks_total,
+        ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS percentage_of_total
+FROM "SAMPLE_SCHEMA"."PUBLIC"."SPOTIFY_WRAPPED"
+GROUP BY 1
+ORDER BY 1
+
+```
+
+```sql
+SELECT    
+       CASE 
+            WHEN DEVICE_TYPE NOT IN ('desktop', 'mobile') THEN 'TV'
+            ELSE DEVICE_TYPE
+        END AS DEVICE_TYPE,
+        SKIPPED,
+        COUNT(*) AS nb_tracks_total
+FROM "SAMPLE_SCHEMA"."PUBLIC"."SPOTIFY_WRAPPED"
+GROUP BY 1,2
+ORDER BY 1
+
+```
+
+<h3>💡 Learnings:</h3>
+<p>I rarely skip songs on Spotify, with only 2% of tracks being skipped. This is likely due to my use of daily playlists, which are usually well-curated to my taste. Additionally, since I often play Spotify as background music while working, I don't pay close attention to every track, making me less likely to skip them.
+</p>
+
+<p align="center">
+<img src="/images/2.1skipping_behavior.png" />
+<br />
+
+---
