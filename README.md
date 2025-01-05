@@ -36,3 +36,13 @@ Part 2. Analyzing Spotify Data Using SQL
 - [How to Create Subfolders in your Repository?](#how-to-create-subfolders-in-your-repository)
 - [How to Upload Projects in your Repository?](#how-to-upload-projects-in-your-repository)
 - [How to Fork a Repository?](#how-to-fork-a-repository)
+
+<h2>Project walk-through:</h2>
+
+<ol>
+  <li><h4>Listening Trends Over Time
+    <ol type="1">
+      <li>Yearly Spotify Listening Trends</h4></li>
+    </ol>
+  </li>
+</ol>
