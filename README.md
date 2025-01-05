@@ -276,7 +276,7 @@ ORDER BY 1,2,3,4,5,6;
 &nbsp;&nbsp;&nbsp;&nbsp; 2.1.1 Device-Specific Skipping Patterns 
 </h3>
 
-<h5>Script to pull listening stats by time of day:</h5> 
+<h5>Script to pull skipping data:</h5> 
 
 ```sql
 SELECT 
@@ -309,6 +309,42 @@ ORDER BY 1
 
 <p align="center">
 <img src="/images/2.1skipping_behavior.png" />
+<br />
+
+---
+
+<h3>2.1.2 When Do I Skip?</h3>
+
+<h5>Script to pull skipping data:</h5> 
+
+```sql
+SELECT
+    CASE 
+        WHEN sec_played IS NULL THEN NULL
+        WHEN sec_played <= 10 THEN '[0-10]'
+        WHEN sec_played BETWEEN 11 AND 20 THEN '[11-20]'
+        WHEN sec_played BETWEEN 21 AND 30 THEN '[21-30]'
+        WHEN sec_played BETWEEN 31 AND 40 THEN '[31-40]'
+        WHEN sec_played BETWEEN 41 AND 60 THEN '[41-60]'
+        ELSE '[61 and more]'
+    END AS sec_played_bins,
+    COUNT(*) AS nb_tracks_total,
+    ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS percentage_of_total
+FROM "SAMPLE_SCHEMA"."PUBLIC"."SPOTIFY_WRAPPED"
+WHERE TYPE = 'Music'
+AND SKIPPED = 'TRUE'
+GROUP BY 1
+ORDER BY percentage_of_total DESC
+
+```
+
+
+<h3>💡 Learnings:</h3>
+<p>I usually skip songs within the first 10 seconds or after 1 minute. If I skip right away, it’s because I’ve overplayed the song and lost interest. For new songs, I give them a fair chance by listening to the first verse or chorus before deciding whether to keep it or move on.
+</p>
+
+<p align="center">
+<img src="/images/2.2skipping_bins.png" />
 <br />
 
 ---
