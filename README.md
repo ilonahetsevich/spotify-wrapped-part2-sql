@@ -389,7 +389,7 @@ ORDER BY percentage_of_total DESC
 
 <h3>2.1.4 Songs I Skip the Mosts</h3>
 
-<h5>Script to retrieve data on my most skipped songs.</h5> 
+<h5>Script to retrieve data on my most skipped songs:</h5> 
 
 ```sql
 SELECT
@@ -426,7 +426,7 @@ SELECT
 </h3>
 
 
-<h5>Script to retrieve data on my favorite artists.</h5> 
+<h5>Script to retrieve data on my favorite artists:</h5> 
 
 ```sql
 SELECT 
@@ -463,3 +463,52 @@ ORDER BY YEAR, RANKING
 <img src="/images/2.2.2fav_artists_top_10.png" />
 <br />
 ---
+
+<h3>2.2.2 Listening Time for Top Artists</h3>
+
+<h5>Script to retrieve listening time data for top artists:</h5> 
+
+```sql
+WITH TopArtists AS (
+    SELECT 
+        ARTIST_NAME,
+        ROUND(SUM(MIN_PLAYED) / 60, 2) AS total_hours_played
+    FROM "SAMPLE_SCHEMA"."PUBLIC"."SPOTIFY_WRAPPED"
+    WHERE ARTIST_NAME IS NOT NULL
+    GROUP BY ARTIST_NAME
+    ORDER BY total_hours_played DESC
+    LIMIT 5
+),
+ArtistYearTrends AS (
+    SELECT
+        ARTIST_NAME,
+        YEAR,
+        ROUND(SUM(MIN_PLAYED) / 60, 2) AS yearly_hours_played
+    FROM "SAMPLE_SCHEMA"."PUBLIC"."SPOTIFY_WRAPPED"
+    WHERE ARTIST_NAME IS NOT NULL
+    GROUP BY ARTIST_NAME, year
+)
+SELECT 
+    t.ARTIST_NAME,
+    a.year,
+    a.yearly_hours_played
+FROM ArtistYearTrends a
+JOIN TopArtists t
+    ON a.ARTIST_NAME = t.ARTIST_NAME
+ORDER BY t.ARTIST_NAME, a.year;
+
+```
+
+
+<h3>💡 Learnings:</h3>
+<p>All of the top artists I listened to experienced a drop in listening hours, reflecting my overall decrease in music consumption over the years.
+
+
+</p>
+
+<p align="center">
+<img src="/images/Listening_Hours_artists.png" />
+<br />
+
+---
+
