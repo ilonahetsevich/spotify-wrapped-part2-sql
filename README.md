@@ -25,7 +25,7 @@ Part 2. Analyzing Spotify Data Using SQL
 - How much time did I spend listening to music versus podcasts?<br />
 - What days of the week and times of the day do I listen the most?
 
-<p><b>Artists, songs, gernes, and podcasts</b></p>
+<p><b>Artists, songs, genres, and podcasts</b></p>
 
 - Which artists and songs have been my favorites, and how have they changed over time?<br />
 - What are my top podcasts over the years?<br />
@@ -47,12 +47,12 @@ Part 2. Analyzing Spotify Data Using SQL
     2. [Monthly Listening Patterns](#12-monthly-spotify-listening-trends)
     3. [Weekly Listening Habits](#13-weekly-listening-habits)
     4. [Listening Habits by Time of Day](#14-listening-habits-by-time-of-day)     
-2. [Artists, Songs, and Genrese](#-2-artists-songs-and-genres--21-skipping-behavior-211-device-specific-skipping-patterns-)
+2. [Artists, Songs, and Genres](#-2-artists-songs-and-genres--21-skipping-behavior-211-device-specific-skipping-patterns-)
     1. [Skipping Behavior](#-2-artists-songs-and-genres--21-skipping-behavior-211-device-specific-skipping-patterns-)
         1. [Device-Specific Skipping Patterns](#-2-artists-songs-and-genres--21-skipping-behavior-211-device-specific-skipping-patterns-)
         2. [When Do I Skip?](#212-when-do-i-skip)
         3. [Most Skipped Genres](#213-most-skipped-genres)
-        4. [Songs I Skip the Most](#214-songs-i-skip-the-mosts)
+        4. [Songs I Skip the Most](#214-songs-i-skip-the-most)
     2. [My Top Artists Over the Years](#--22-my-top-artists-over-the-years-221-top-artists-rankings)
         1. [Top Artists Rankings](#--22-my-top-artists-over-the-years-221-top-artists-rankings)
         2. [Listening Time for Top Artists](#222-listening-time-for-top-artists)
@@ -154,7 +154,7 @@ ORDER BY YEAR ASC;
 
 <h3>💡 Learnings:</h3>
 <p> I was most active in Spotify listening around 2018–2019, with a gradual decline in recent years. My peak listening year was 2019, when I spent an average of <b>2.2 hours per day</b> on Spotify. Starting in 2020, with the onset of the pandemic and the shift to remote work, my listening time began to decline steadily, reaching <b>1.24 hours/day in 2024 - a 43.6% drop</b> compared to the peak in 2019.</p>
-<p>Podcasts have become an increasingly important part of my listening habits, though they remain secondary to music. Their share of total listening time grew from <b>3.12% in 2018 to 7.16%</b> in 2024, indicating a consistent increase in interest. Notably, the time I spent listening to podcasts <b>skyrocketed by 169%</b> in 2020, likely driven by lifestyle changes during the pandemic.</p>
+<p>Podcasts have become an increasingly important part of my listening habits, though they remain secondary to music. Their share of total listening time grew from <b>3.12% in 2018 to 7.16% in 2024</b>, indicating a consistent increase in interest. Notably, the time I spent listening to podcasts <b>skyrocketed by 169%</b> in 2020, likely driven by lifestyle changes during the pandemic.</p>
 <p>My listening diversity has expanded over time. In 2023, I explored <b>1 750 unique artists</b> and listened to <b>the highest-ever number of unique music tracks (2 970)</b>. This suggests a growing curiosity and openness to discovering new music.</p>
 <p>The average number of plays per music track has decreased steadily, from <b>3.9 in 2019 to 2.05 in 2023</b> - almost 2 times lower. This shift points to an exploratory approach to music, with less emphasis on replaying the same songs. For podcasts, the average plays per episode have remained stable (<b>around 1.0–1.39</b>), indicating that I tend to listen to podcasts only once.
 </p>
@@ -189,13 +189,16 @@ ORDER BY YEAR, MONTH, season ASC;
 
 ```
 
+
 <h3>💡 Learnings:</h3>
 <p>My listening habits remain fairly consistent across the seasons, but Summer and Winter tend to dominate overall, reflecting increased activity during holidays and colder months. External factors, such as lifestyle changes or major events, also play a significant role. For instance, in 2020, Spring led with 35.05% of my total listening time, likely due to spending more time indoors during the pandemic. In 2024, Winter reclaimed the top spot (32.93% of total listening time), driven by my heavy running load during that season.</p>
 
 <p align="center">
 <img src="/images/1.2listening_by_season.png" />
 <br />
-
+    
+---
+    
 <h3>1.3 Weekly Listening Habits</h3>
 
 
@@ -284,7 +287,7 @@ ORDER BY 1,2,3,4,5,6;
 &nbsp;&nbsp;&nbsp;&nbsp; 2.1.1 Device-Specific Skipping Patterns 
 </h3>
 
-<h5>Script to retrieve skipping data:</h5> 
+<h5>Scripts to retrieve skipping data:</h5> 
 
 ```sql
 SELECT 
@@ -385,7 +388,7 @@ ORDER BY percentage_of_total DESC
 </blockquote>
 
 <h3>💡 Learnings:</h3>
-<p>I tend to skip artists from "dance, electronic" genres and various Polish pop subgenres the most. The high skip rates for Polish pop and Polish hip-hop are likely due to my frequent listening to "Top Songs Poland" playlists during my 5 years living in Poland.
+<p>I tend to skip artists from "dance, electronic" genres and various "Polish pop" subgenres the most. The high skip rates for Polish pop and Polish hip-hop are likely due to my frequent listening to "Top Songs Poland" playlists during my 5 years living in Poland.
 
 </p>
 
@@ -395,7 +398,7 @@ ORDER BY percentage_of_total DESC
 
 ---
 
-<h3>2.1.4 Songs I Skip the Mosts</h3>
+<h3>2.1.4 Songs I Skip the Most</h3>
 
 <h5>Script to retrieve data on my most skipped songs:</h5> 
 
