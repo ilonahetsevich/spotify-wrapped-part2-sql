@@ -148,18 +148,20 @@ ORDER BY YEAR ASC;
 
 
 
+---
 
 
 <h3>💡 Learnings:</h3>
-<p> I was most active in Spotify listening around 2018–2019, with a gradual decline in recent years. My peak listening year was 2019, when I spent an average of 2.2 hours per day on Spotify. Starting in 2020, with the onset of the pandemic and the shift to remote work, my listening time began to decline steadily, reaching 1.24 hours/day in 2024 - a 43.6% drop compared to the peak in 2019.</p>
-<p>Podcasts have become an increasingly important part of my listening habits, though they remain secondary to music. Their share of total listening time grew from 3.12% in 2018 to 7.16% in 2024, indicating a consistent increase in interest. Notably, the time I spent listening to podcasts skyrocketed by 169% in 2020, likely driven by lifestyle changes during the pandemic.</p>
-<p>My listening diversity has expanded over time. In 2023, I explored 1 750 unique artists and listened to the highest-ever number of unique music tracks (2 970). This suggests a growing curiosity and openness to discovering new music.</p>
-<p>The average number of plays per music track has decreased steadily, from 3.9 in 2019 to 2.05 in 2023 - almost 2 times lower. This shift points to an exploratory approach to music, with less emphasis on replaying the same songs. For podcasts, the average plays per episode have remained stable (around 1.0–1.39), indicating that I tend to listen to podcasts only once.
+<p> I was most active in Spotify listening around 2018–2019, with a gradual decline in recent years. My peak listening year was 2019, when I spent an average of <b>2.2 hours per day</b> on Spotify. Starting in 2020, with the onset of the pandemic and the shift to remote work, my listening time began to decline steadily, reaching <b>1.24 hours/day in 2024 - a 43.6% drop</b> compared to the peak in 2019.</p>
+<p>Podcasts have become an increasingly important part of my listening habits, though they remain secondary to music. Their share of total listening time grew from <b>3.12% in 2018 to 7.16%</b> in 2024, indicating a consistent increase in interest. Notably, the time I spent listening to podcasts <b>skyrocketed by 169%</b> in 2020, likely driven by lifestyle changes during the pandemic.</p>
+<p>My listening diversity has expanded over time. In 2023, I explored <b>1 750 unique artists</b> and listened to <b>the highest-ever number of unique music tracks (2 970)</b>. This suggests a growing curiosity and openness to discovering new music.</p>
+<p>The average number of plays per music track has decreased steadily, from <b>3.9 in 2019 to 2.05 in 2023</b> - almost 2 times lower. This shift points to an exploratory approach to music, with less emphasis on replaying the same songs. For podcasts, the average plays per episode have remained stable (<b>around 1.0–1.39</b>), indicating that I tend to listen to podcasts only once.
 </p>
-<p>Overall, my Spotify habits have shifted over the years toward more diverse, and exploratory engagement, with music taking a slightly reduced role and podcasts steadily gaining ground</p>
+<p>Overall, my Spotify habits have shifted over the years toward more <b>diverse, and exploratory engagement</b>, with music taking a slightly reduced role and podcasts steadily gaining ground</p>
 
-
----
+<p align="center">
+<img src="/images/1.1listening_trends_over_time.png" />
+<br />
 
 
 
