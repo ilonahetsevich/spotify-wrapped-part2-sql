@@ -623,7 +623,7 @@ AND EPISODE_SHOW_NAME IS NOT NULL;
 
 <h3>💡 Learnings:</h3>
 
-<p>My podcast listening habits show a clear pattern of consistent engagement with a few favorite shows, like the “Espresso English Podcast” and “Science Vs,” while also exploring new ones from time to time. When I find a podcast I like, I tend to stick with it rather than constantly switching to new ones.</p>
+<p>My podcast listening habits show a clear pattern of consistent engagement with a few favorite shows, like the “Espresso English Podcast” and “Science Vs”, while also exploring new ones from time to time. When I find a podcast I like, I tend to stick with it rather than constantly switching to new ones.</p>
 <p>Looking at the different stages over the years, I can pinpoint the shifts in my interests. In 2018-2019, I was focused on podcasts for learning English. During 2020-2021, my focus shifted to Science topics, and from 2022-2023, I leaned more into Psychology podcasts. Now, I find myself diving into podcasts about Data and listening to Russian-language podcasts covering a wide range of topics</p>
 <p>This progression reflects how my listening preferences evolve over time, driven by changing interests.</p>
 
@@ -657,7 +657,7 @@ ORDER BY avg_episode_length DESC;
 
 <h3>💡 Learnings:</h3>
 <p>
-When looking at the correlation between podcasts and listening hours, it’s not as straightforward as it is for music. For music, more tracks generally mean more listening hours. But with podcasts, episode lengths vary a lot - some are just 4 minutes, while others go over 30 minutes. This creates outliers, like Espresso English Podcast, which has very short episodes I listened to many of, compared to Science Vs, my second most popular podcast, where fewer, longer episodes make up the hours.
+When looking at the correlation between podcasts and listening hours, it’s not as straightforward as it is for music. For music, more tracks generally mean more listening hours. But with podcasts, episode lengths vary a lot - some are just 4 minutes, while others go over 30 minutes. This creates outliers, like "Espresso English Podcast", which has very short episodes I listened to many of, compared to “Science Vs”, my second most popular podcast, where fewer, longer episodes make up the hours.
 </p>
 
 <p align="center">
