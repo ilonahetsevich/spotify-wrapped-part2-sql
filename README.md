@@ -73,7 +73,7 @@ Part 2. Analyzing Spotify Data Using SQL
 <i> <b> Disclaimer: </b> I analyzed 8 years of Spotify data, but since the data was requested on December 6th, 2024, I didn't have any information for the remaining days of December. Rather than excluding December entirely and limiting the analysis to overlapping months across all years, I chose to use metrics like average listening time per day. This approach accounts for variations in the number of active days, normalizes the data, and ensures fair comparisons between years.</i>
 </blockquote>
 
-<h5>Script to pull yearly stats:</h5> 
+<h5>Script to retrieve yearly statistics:</h5> 
 
 ```sql
 SELECT  YEAR,
@@ -99,7 +99,7 @@ GROUP BY YEAR
 ORDER BY YEAR ASC;
 ```
 
-<h5>Script to pull year-over-year changes:</h5> 
+<h5>Script to retrieve year-over-year changes:</h5> 
 
 ```sql
 WITH yearly_metrics AS (
@@ -163,7 +163,7 @@ ORDER BY YEAR ASC;
 <h3>1.2 Monthly Spotify Listening Trends</h3>
 
 
-<h5>Script to pull monthly listening stats:</h5> 
+<h5>Script to retrieve monthly listening statistics:</h5> 
 
 ```sql
 SELECT
@@ -192,7 +192,7 @@ ORDER BY YEAR, MONTH, season ASC;
 <h3>1.3 Weekly Listening Habits</h3>
 
 
-<h5>Script to pull weekly listening stats:</h5> 
+<h5>Script to retrieve weekly listening statistics:</h5> 
 
 ```sql
 SELECT 
@@ -235,7 +235,7 @@ ORDER BY day_order, YEAR ASC;
 <h3>1.4 Listening Habits by Time of Day</h3>
 
 
-<h5>Script to pull listening stats by time of day:</h5> 
+<h5>Script to retrieve listening statistics by time of day:</h5> 
 
 ```sql
 SELECT 
@@ -277,7 +277,7 @@ ORDER BY 1,2,3,4,5,6;
 &nbsp;&nbsp;&nbsp;&nbsp; 2.1.1 Device-Specific Skipping Patterns 
 </h3>
 
-<h5>Script to pull skipping data:</h5> 
+<h5>Script to retrieve skipping data:</h5> 
 
 ```sql
 SELECT 
@@ -316,7 +316,7 @@ ORDER BY 1
 
 <h3>2.1.2 When Do I Skip?</h3>
 
-<h5>Script to pull skipping bins data:</h5> 
+<h5>Script to retrieve skipping behavior data (when I skip):</h5> 
 
 ```sql
 SELECT
@@ -352,7 +352,7 @@ ORDER BY percentage_of_total DESC
 
 <h3>2.1.3 Most Skipped Genres</h3>
 
-<h5>Script to pull skipping data by genre:</h5> 
+<h5>Script to retrieve skipping data by genre:</h5> 
 
 ```sql
  SELECT 
@@ -596,7 +596,7 @@ ORDER BY total_hours_played DESC;
 &nbsp;&nbsp;&nbsp;&nbsp; 2.3.1 Most-Listened Podcasts
 </h3>
 
-<h5>Script to retrieve data on my most-listened-to podcasts:</h5> 
+<h5>Script to retrieve data on my top listened podcasts:</h5> 
 
 ```sql
 SELECT DISTINCT EPISODE_SHOW_NAME,
