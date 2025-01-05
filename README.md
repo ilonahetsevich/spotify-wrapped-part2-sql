@@ -30,7 +30,7 @@ Part 2. Analyzing Spotify Data Using SQL
 - How does Spotify fit into my daily routine - background noise, focused listening, or exploring new music?
 
 ## Table of Contents
-- [How to Create Your Profile?](#how-to-create-your-profile)
+- [Listening Trends Over Time](#listening-trends-over-time----------yearly-spotify-listening-trends)
 - [How to Customize Markdown files?](#how-to-customize-markdown-files)
 - [How to Create New Repository?](#how-to-create-new-repository)
 - [How to Create Subfolders in your Repository?](#how-to-create-subfolders-in-your-repository)
