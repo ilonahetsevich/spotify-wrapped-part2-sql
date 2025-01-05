@@ -595,7 +595,7 @@ ORDER BY total_hours_played DESC;
 &nbsp;&nbsp;&nbsp;&nbsp; 2.3.1 Most-Listened Podcasts
 </h3>
 
-<h5>Script to retrieve the correlation between tracks and listening hours:</h5> 
+<h5>Script to retrieve data on my most-listened-to podcasts:</h5> 
 
 ```sql
 SELECT DISTINCT EPISODE_SHOW_NAME,
@@ -618,6 +618,78 @@ AND EPISODE_SHOW_NAME IS NOT NULL;
 
 <p align="center">
 <img src="/images/podcasts.png" />
+<br />
+
+    
+---
+
+
+<h3>2.3.2 Podcast Episodes vs. Listening Minutes Correlation</h3>
+
+<h5>Script to retrieve the correlation between podcast episodes and listening minutes:</h5> 
+
+```sql
+SELECT DISTINCT EPISODE_SHOW_NAME,
+COUNT(EPISODE_SHOW_NAME) AS num_episodes_played,
+ROUND(SUM(MIN_PLAYED)/60, 2) AS total_hours_played,
+ROUND(SUM(MIN_PLAYED),2) AS minutes_played,
+ROUND(SUM(MIN_PLAYED), 2)/ COUNT(EPISODE_SHOW_NAME) AS avg_episode_length
+FROM "SAMPLE_SCHEMA"."PUBLIC"."SPOTIFY_WRAPPED"
+GROUP BY EPISODE_SHOW_NAME
+HAVING COUNT(EPISODE_SHOW_NAME) > 1
+--AND SKIPPED = 'FALSE'
+AND EPISODE_SHOW_NAME IS NOT NULL
+ORDER BY avg_episode_length DESC;
+
+```
+
+
+<h3>💡 Learnings:</h3>
+<p>
+When looking at the correlation between podcasts and listening hours, it’s not as straightforward as it is for music. For music, more tracks generally mean more listening hours. But with podcasts, episode lengths vary a lot - some are just 4 minutes, while others go over 30 minutes. This creates outliers, like Espresso English Podcast, which has very short episodes I listened to many of, compared to Science Vs, my second most popular podcast, where fewer, longer episodes make up the hours.
+</p>
+
+<p align="center">
+<img src="/images/Correlation_Between_Episodes_Played_and_Minutes_Listened_per_Podcast.png" />
+<br />
+
+---
+
+
+<h3> 
+3. Device Analysis and Lifestyle Changes <br />
+&nbsp;&nbsp;&nbsp;&nbsp; 3.1 Device Usage Breakdown<br />
+</h3>
+
+<h5>Script to retrieve data on device usage:</h5> 
+
+```sql
+SELECT 
+    TYPE,
+    CASE 
+        WHEN DEVICE_TYPE NOT IN ('desktop', 'mobile') THEN 'TV'
+        ELSE DEVICE_TYPE
+    END AS DEVICE_TYPE,
+    YEAR,
+    ROUND(SUM(MIN_PLAYED)) AS minutes_played,
+    ROUND(SUM(MIN_PLAYED)/60,2) AS hours_played,
+    ROUND(SUM(MIN_PLAYED)/ COUNT(DISTINCT date),2) AS minutes_played_per_day,
+    ROUND(SUM(MIN_PLAYED)/60 / COUNT(DISTINCT date),2) AS hours_played_per_day
+FROM "SAMPLE_SCHEMA"."PUBLIC"."SPOTIFY_WRAPPED"
+GROUP BY 1,2,3
+ORDER BY YEAR ASC;
+
+
+```
+
+
+
+<h3>💡 Learnings:</h3>
+
+<p>My listening habits were initially dominated by desktop use before the pandemic, as I used it during office work to help with noise cancellation. When the pandemic began and I started working from home, I continued listening to music on desktop out of habit, but the role of mobile devices began to grow. By 2021, the balance between desktop and mobile had completely shifted, with mobile becoming the primary device for listening. TV usage also started to emerge in 2023, likely due to the addition of the Spotify app on my TV.</p>
+
+<p align="center">
+<img src="/images/3.1devices.png" />
 <br />
 
     
