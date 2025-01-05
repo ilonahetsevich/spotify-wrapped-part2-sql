@@ -589,8 +589,8 @@ ORDER BY total_hours_played DESC;
 <h3>💡 Learnings:</h3>
 
 - <b>High Tracks & High Hours:</b> Pink, Ed Sheeran, and Miley Cyrus are the artists I really dive into, listening to lots of their songs for a long time.<br />
-- <b>Low Tracks & High Hours: </b> For artists like Linkin Park and MØ, I tend to listen to a few favorite tracks over and over, which is why they show up with high listening hours despite fewer songs.<br />
-- <b>High Tracks & Low Hours:</b> Artists like Khalid, Kygo, David Guetta, Post Malone, Taylor Swift, and Twenty One Pilots are ones I explore a lot, but I don’t listen to them for long stretches.<br />
+- <b>Low Tracks & High Hours: </b> For artists like Khalid, Kygo, I tend to listen to a few favorite tracks over and over, which is why they show up with high listening hours despite fewer songs.<br />
+- <b>High Tracks & Low Hours:</b> Artists like David Guetta, Post Malone, Taylor Swift, and Twenty One Pilots are ones I explore a lot, but I don’t listen to them for long stretches.<br />
 - <b>Occasional Listens:</b> The rest are artists I listen to now and then, with fewer tracks and lower total listening time.<br />
 
 <p align="center">
@@ -711,5 +711,5 @@ ORDER BY YEAR ASC;
 <p>This project wasn’t just about analyzing data - it was a nostalgia trip. Looking back at 8 years of Spotify listening brought up so many memories: the road trip from Krakow to Warsaw to see P!nk, which made her my top artist that year; the 21 hours I spent hooked on the “Science vs” podcast (so good I even recommended it on Instagram); and all those 40 mins rides to work in 2019, which ended up being my top year for listening. Every piece of data had a story behind it.</p>
 <p>I learned how much my listening habits have changed over time. After switching to remote work, my listening time dropped by over 40%. Without the noise of an office to block out, I don’t rely on music as much. These days, I use Spotify on my phone more than my computer - mostly while walking my dog or running instead of sitting at a desk.</p>
 <p>I also realized I don’t skip songs often, but when I do, it can even happen to my favorites, like Miley Cyrus’s “Flowers,” after playing them too many times. On the other hand, Ed Sheeran clearly has a special place in my heart - he’s been in my top 10 five times, including being number one in 2017 and 2023.</p>
-<p>I love discovering new artists and songs, but some bands, like Linkin Park with their unforgettable tracks, always make it back into my rotation. And one thing is clear - Polish pop isn’t for me. It’s the genre I skip the most.</p>
+<p>I love discovering new artists and songs, but some artists, like Khalid with their unforgettable tracks, always make it back into my rotation. And one thing is clear - Polish pop isn’t for me. It’s the genre I skip the most.</p>
 <p>This project wasn’t just a deep dive into data - it was a way to relive some of my favorite moments and notice how much my listening habits have changed over the years.</p>
