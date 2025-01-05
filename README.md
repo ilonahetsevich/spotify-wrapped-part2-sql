@@ -694,3 +694,11 @@ ORDER BY YEAR ASC;
 
     
 ---
+---
+
+<h3>🌟Conclusion🌟</h3>
+<p>This project wasn’t just about analyzing data - it was a nostalgia trip. Looking back at 8 years of Spotify listening brought up so many memories: the road trip from Krakow to Warsaw to see P!nk, which made her my top artist that year; the 21 hours I spent hooked on the “Science vs” podcast (so good I even recommended it on Instagram); and all those 40 mins rides to work in 2019, which ended up being my top year for listening. Every piece of data had a story behind it.</p>
+<p>I learned how much my listening habits have changed over time. After switching to remote work, my listening time dropped by over 40%. Without the noise of an office to block out, I don’t rely on music as much. These days, I use Spotify on my phone more than my computer - mostly while walking my dog or running instead of sitting at a desk.</p>
+<p>I also realized I don’t skip songs often, but when I do, it can even happen to my favorites, like Miley Cyrus’s “Flowers,” after playing them too many times. On the other hand, Ed Sheeran clearly has a special place in my heart - he’s been in my top 10 five times, including being number one in 2017 and 2023.</p>
+<p>I love discovering new artists and songs, but some bands, like Linkin Park with their unforgettable tracks, always make it back into my rotation. And one thing is clear - Polish pop isn’t for me. It’s the genre I skip the most.</p>
+<p>This project wasn’t just a deep dive into data - it was a way to relive some of my favorite moments and notice how much my listening habits have changed over the years.</p>
