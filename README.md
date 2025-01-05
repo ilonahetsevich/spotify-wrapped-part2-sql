@@ -143,4 +143,12 @@ ORDER BY YEAR ASC;
 
 ```
 
-<br />
+
+
+
+<div class="square square-green">
+  <h3>Learnings:</h3>
+  <p>I was most active in Spotify listening around 2018–2019, with a gradual decline in recent years. My peak listening year was 2019, when I spent an average of 2.2 hours per day on Spotify. Starting in 2020, with the onset of the pandemic and the shift to remote work, my listening time began to decline steadily, reaching 1.24 hours/day in 2024 - a 43.6% drop compared to the peak in 2019.</p>
+</div>
+
+
