@@ -417,3 +417,49 @@ SELECT
 <br />
 
 ---
+
+
+<h3> 
+
+&nbsp;&nbsp;&nbsp;&nbsp; 2.2 My Top Artists Over the Years<br />
+&nbsp;&nbsp;&nbsp;&nbsp; 2.2.1 Top Artists Rankings
+</h3>
+
+
+<h5>Script to retrieve data on my favorite artists.</h5> 
+
+```sql
+SELECT 
+    YEAR,
+    ARTIST_NAME,
+    ranking
+    FROM (
+        SELECT
+            YEAR,
+            ARTIST_NAME,
+            DENSE_RANK() OVER (PARTITION BY YEAR ORDER BY nb_tracks_total DESC) AS ranking
+        FROM (
+            SELECT   
+                    YEAR,
+                    ARTIST_NAME,
+                    COUNT(*) AS nb_tracks_total
+                FROM "SAMPLE_SCHEMA"."PUBLIC"."SPOTIFY_WRAPPED" 
+                WHERE TYPE = 'Music'
+                GROUP BY 1,2
+            ) AS subquery
+    ) AS ranked_data
+WHERE ranking<=10
+ORDER BY YEAR, RANKING
+
+```
+
+
+<h3>💡 Learnings:</h3>
+<p>Ed Sheeran has appeared in my top 10 artist rankings the most, with 5 total appearances. Notably, he secured the #1 spot twice, in 2017 and 2023.</p>
+
+<p align="center">
+<img src="/images/2.2.1fav_artists_top_1.png" />
+<br />
+<img src="/images/2.2.2fav_artists_top_10.png" />
+<br />
+---
