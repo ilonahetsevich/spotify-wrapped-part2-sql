@@ -16,15 +16,23 @@ Part 2. Analyzing Spotify Data Using SQL
 - How much time did I spend listening to music versus podcasts?<br />
 - What days of the week and times of the day do I listen the most?
 
-<p><b>Artists, Songs, Gernes, and Podcasts</b></p>
+<p><b>Artists, songs, gernes, and podcasts</b></p>
 
 - Which artists and songs have been my favorites, and how have they changed over time?<br />
 - What are my top podcasts over the years?<br />
 - Do I skip songs often? What genres do I skip the most?<br />
 - How often do I explore new music versus sticking with familiar favorites?
 
-<p><b>Device Preferences and Lifestyle</b></p>
+<p><b>Device preferences and lifestyle</b></p>
 
 - What device do I use the most: desktop, mobile, or maybe TV?<br />
 - How has my device usage evolved alongside lifestyle changes, like working remotely or pandemic?<br />
 - How does Spotify fit into my daily routine - background noise, focused listening, or exploring new music?
+
+## Table of Contents
+- [How to Create Your Profile?](#how-to-create-your-profile)
+- [How to Customize Markdown files?](#how-to-customize-markdown-files)
+- [How to Create New Repository?](#how-to-create-new-repository)
+- [How to Create Subfolders in your Repository?](#how-to-create-subfolders-in-your-repository)
+- [How to Upload Projects in your Repository?](#how-to-upload-projects-in-your-repository)
+- [How to Fork a Repository?](#how-to-fork-a-repository)
