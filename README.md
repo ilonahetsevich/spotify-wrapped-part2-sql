@@ -315,7 +315,7 @@ ORDER BY 1
 
 <h3>2.1.2 When Do I Skip?</h3>
 
-<h5>Script to pull skipping data:</h5> 
+<h5>Script to pull skipping bins data:</h5> 
 
 ```sql
 SELECT
@@ -345,6 +345,75 @@ ORDER BY percentage_of_total DESC
 
 <p align="center">
 <img src="/images/2.2skipping_bins.png" />
+<br />
+
+---
+
+<h3>2.1.3 Most Skipped Genres</h3>
+
+<h5>Script to pull skipping data by genre:</h5> 
+
+```sql
+ SELECT 
+        g.GENRES,
+        COUNT(*) AS nb_tracks_total,
+        SUM(CASE WHEN SKIPPED = 'TRUE' THEN 1 ELSE 0 END) AS total_tracks_skipped,
+        ROUND(100.0 * SUM(CASE WHEN SKIPPED = 'TRUE' THEN 1 ELSE 0 END) / COUNT(*), 2) AS skip_rate_percentage
+    FROM "SAMPLE_SCHEMA"."PUBLIC"."SPOTIFY_WRAPPED" AS a
+    JOIN "SAMPLE_SCHEMA"."PUBLIC"."GENRES" AS g
+    ON a.ARTIST_NAME = g.ARTIST_NAME
+    WHERE TYPE = 'Music' 
+    GROUP BY a.ARTIST_NAME, g.GENRES
+    HAVING nb_tracks_total >=10 
+    AND SKIP_RATE_PERCENTAGE >=20.00
+    ORDER BY skip_rate_percentage DESC
+
+```
+<blockquote style="background-color: #f0f0f0; padding: 15px; border-left: 5px solid #ccc; font-style: italic;">
+<i> <b> Disclaimer: </b> <br />
+1. To ensure a meaningful sample size for the skip rate and minimize noise from one-off listens or edge cases,  I filtered for artists with more than 10 tracks played, avoiding biases from one-off plays.<br />
+2. Genres are assigned to artists, not individual tracks, and since artists often perform across multiple genres, calculating the skip rate for each genre without duplicating data is not feasible. Instead, I opted for an observational approach.
+</i>
+</blockquote>
+
+<h3>💡 Learnings:</h3>
+<p>I tend to skip artists from "dance, electronic" genres and various Polish pop subgenres the most. The high skip rates for Polish pop and Polish hip-hop are likely due to my frequent listening to "Top Songs Poland" playlists during my 5 years living in Poland.
+
+</p>
+
+<p align="center">
+<img src="/images/genre_skipped.png" />
+<br />
+
+---
+
+<h3>2.1.4 Songs I Skip the Mosts</h3>
+
+<h5>Script to retrieve data on my most skipped songs.</h5> 
+
+```sql
+SELECT
+        TRACK_NAME,
+        ARTIST_NAME,
+        COUNT(*) AS nb_tracks_total,
+        SUM(CASE WHEN SKIPPED = 'TRUE' THEN 1 ELSE 0 END) AS total_tracks_skipped,
+        ROUND(100.0 * SUM(CASE WHEN SKIPPED = 'TRUE' THEN 1 ELSE 0 END) / COUNT(*), 2) AS skip_rate_percentage
+    FROM "SAMPLE_SCHEMA"."PUBLIC"."SPOTIFY_WRAPPED" 
+    WHERE TYPE = 'Music'
+    GROUP BY TRACK_NAME, ARTIST_NAME
+    HAVING nb_tracks_total >=10 
+    ORDER BY TOTAL_TRACKS_SKIPPED DESC
+
+```
+
+
+<h3>💡 Learnings:</h3>
+<p>My top songs are often the ones I skip the most, simply because I get tired of hearing them repeatedly after adding them to my liked songs. This is what happened with "Flowers" by Miley Cyrus.
+
+</p>
+
+<p align="center">
+<img src="/images/2.1.4flowers.png" />
 <br />
 
 ---
