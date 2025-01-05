@@ -365,19 +365,36 @@ ORDER BY percentage_of_total DESC
 <h5>Script to retrieve skipping data by genre:</h5> 
 
 ```sql
- SELECT 
-        g.GENRES,
+WITH artist_skip_data AS (
+    SELECT 
+        ARTIST_NAME,
         COUNT(*) AS nb_tracks_total,
         SUM(CASE WHEN SKIPPED = 'TRUE' THEN 1 ELSE 0 END) AS total_tracks_skipped,
         ROUND(100.0 * SUM(CASE WHEN SKIPPED = 'TRUE' THEN 1 ELSE 0 END) / COUNT(*), 2) AS skip_rate_percentage
-    FROM "SAMPLE_SCHEMA"."PUBLIC"."SPOTIFY_WRAPPED" AS a
-    JOIN "SAMPLE_SCHEMA"."PUBLIC"."GENRES" AS g
-    ON a.ARTIST_NAME = g.ARTIST_NAME
-    WHERE TYPE = 'Music' 
-    GROUP BY a.ARTIST_NAME, g.GENRES
-    HAVING nb_tracks_total >=10 
-    AND SKIP_RATE_PERCENTAGE >=20.00
-    ORDER BY skip_rate_percentage DESC
+    FROM "SAMPLE_SCHEMA"."PUBLIC"."SPOTIFY_WRAPPED"
+    WHERE TYPE = 'Music'
+    GROUP BY ARTIST_NAME
+    HAVING nb_tracks_total > 10 -- Only include artists with more than 10 tracks played
+),
+genre_skip_data AS (
+    SELECT 
+        g.GENRES,
+        SUM(a.total_tracks_skipped) AS total_tracks_skipped_genre,
+        SUM(a.nb_tracks_total) AS total_tracks_played_genre,
+        ROUND(100.0 * SUM(a.total_tracks_skipped) / SUM(a.nb_tracks_total), 2) AS skip_rate_percentage_genre
+    FROM   "SAMPLE_SCHEMA"."PUBLIC"."GENRES" g
+    JOIN artist_skip_data a
+        ON g.ARTIST_NAME = a.ARTIST_NAME
+    GROUP BY g.GENRES
+)
+SELECT 
+    GENRES,
+    total_tracks_played_genre,
+    total_tracks_skipped_genre,
+    skip_rate_percentage_genre
+FROM genre_skip_data
+ORDER BY skip_rate_percentage_genre DESC;
+
 
 ```
 <blockquote style="background-color: #f0f0f0; padding: 15px; border-left: 5px solid #ccc; font-style: italic;">
@@ -393,7 +410,7 @@ ORDER BY percentage_of_total DESC
 </p>
 
 <p align="center">
-<img src="/images/genre_skipped.png" />
+<img src="/images/genre_new.png" />
 <br />
 
 ---
