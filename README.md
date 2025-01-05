@@ -557,3 +557,34 @@ ORDER BY YEAR, RANKING;
 
 ---
 
+<h3>2.2.4 Artists: Tracks vs. Listening Hours Correlation</h3>
+
+<h5>Script to retrieve the correlation between tracks and listening hours:</h5> 
+
+```sql
+SELECT 
+    ARTIST_NAME,
+    COUNT(DISTINCT TRACK_NAME) AS num_tracks_played,
+    ROUND(SUM(MIN_PLAYED) / 60, 2) AS total_hours_played
+FROM "SAMPLE_SCHEMA"."PUBLIC"."SPOTIFY_WRAPPED"
+WHERE ARTIST_NAME IS NOT NULL
+GROUP BY ARTIST_NAME
+HAVING COUNT(DISTINCT TRACK_NAME)>= 10
+ORDER BY total_hours_played DESC;
+
+```
+
+
+<h3>💡 Learnings:</h3>
+
+- <b>High Tracks & High Hours:</b> Pink, Ed Sheeran, and Miley Cyrus are the artists I really dive into, listening to lots of their songs for a long time.<br />
+- <b>Low Tracks & High Hours: </b> For artists like Linkin Park and MØ, I tend to listen to a few favorite tracks over and over, which is why they show up with high listening hours despite fewer songs.<br />
+- <b>High Tracks & Low Hours:</b> Artists like Khalid, Kygo, David Guetta, Post Malone, Taylor Swift, and Twenty One Pilots are ones I explore a lot, but I don’t listen to them for long stretches.<br />
+- <b>Occasional Listens:</b> The rest are artists I listen to now and then, with fewer tracks and lower total listening time.<br />
+
+<p align="center">
+<img src="/images/Correlation_Between_Tracks_Played_and_Hours_Listened_per_Artist.png" />
+<br />
+
+    
+---
