@@ -230,7 +230,44 @@ ORDER BY day_order, YEAR ASC;
 <br />
 <img src="/images/1.3weekly_listening_yoy.png" />
 <br />
+    
 ---
 
 
+<h3>1.4 Listening Habits by Time of Day</h3>
+
+
+<h5>Script to pull listening stats by time of day:</h5> 
+
+```sql
+SELECT 
+    EXTRACT(HOUR FROM TS) AS hour,
+    YEAR,
+    MONTH,
+    TO_CHAR(DATE, 'DY') AS abbreviated_day_name,
+    TYPE,
+    CASE 
+        WHEN EXTRACT(HOUR FROM TS) BETWEEN 6 AND 11 THEN 'MORNING'
+        WHEN EXTRACT(HOUR FROM TS) BETWEEN 12 AND 17 THEN 'AFTERNOON'
+        WHEN EXTRACT(HOUR FROM TS) BETWEEN 18 AND 21 THEN 'EVENING'
+        ELSE 'NIGHT'
+    END AS time_day, 
+    ROUND(SUM(MIN_PLAYED)) AS minutes_played,
+    ROUND(SUM(MIN_PLAYED)/60,2) AS hours_played,
+    ROUND(SUM(MIN_PLAYED)/ COUNT(DISTINCT date),2) AS minutes_played_per_day,
+    ROUND(SUM(MIN_PLAYED)/60 / COUNT(DISTINCT date),2) AS hours_played_per_day
+FROM "SAMPLE_SCHEMA"."PUBLIC"."SPOTIFY_WRAPPED"
+GROUP BY 1,2,3,4,5,6
+ORDER BY 1,2,3,4,5,6;
+
+```
+
+<h3>💡 Learnings:</h3>
+<p>From 2017 to early 2020, my listening habits were heavily concentrated in the mornings (over 50% of total listening time), driven by my daily commute. Despite the pandemic and working from home in 2020, my morning listening remained strong thanks to walking my new dog. In 2023, as I developed a regular running habit, my mornings became slightly less dominant, with a noticeable shift toward the afternoon and evening. Additionally, my summer trips to the U.S. in 2023 and 2024 led to an increase in night-time listening.</p>
+
+<p align="center">
+<img src="/images/1.4listening_by_time_of_the_day.png" />
+<br />
+
 ---
+
