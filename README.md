@@ -512,3 +512,48 @@ ORDER BY t.ARTIST_NAME, a.year;
 
 ---
 
+<h3>2.2.3 Favorite Songs Through the Years</h3>
+
+<h5>Script to retrieve listening time data for top songs:</h5> 
+
+```sql
+SELECT 
+    YEAR,
+    TRACK_NAME,
+    ARTIST_NAME,
+    ranking
+    FROM (
+        SELECT
+            YEAR,
+            TRACK_NAME,
+            ARTIST_NAME,
+            DENSE_RANK() OVER (PARTITION BY YEAR ORDER BY nb_tracks_total DESC) AS ranking
+        FROM (
+            SELECT   
+                    YEAR,
+                    TRACK_NAME,
+                    ARTIST_NAME,
+                    COUNT(*) AS nb_tracks_total
+                FROM "SAMPLE_SCHEMA"."PUBLIC"."SPOTIFY_WRAPPED" 
+                WHERE TYPE = 'Music'
+                GROUP BY 1,2,3
+            ) AS subquery
+    ) AS ranked_data
+WHERE ranking<=10
+ORDER BY YEAR, RANKING;
+
+```
+
+
+<h3>💡 Learnings:</h3>
+<p>My top songs aren't always performed by the top artists, with Ed Sheeran being the notable exception.
+
+
+</p>
+
+<p align="center">
+<img src="/images/top_songs.png" />
+<br />
+
+---
+
