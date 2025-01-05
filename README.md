@@ -61,13 +61,10 @@ Part 2. Analyzing Spotify Data Using SQL
 
 <h2>Project walk-through:</h2>
 
-<ol>
-  <li><h3>Listening Trends Over Time
-    <ol type="1">
-      <li>Yearly Spotify Listening Trends</h3></li>
-    </ol>
-  </li>
-</ol>
+<h3> 
+1. Listening Trends Over Time <br />
+&nbsp;&nbsp;&nbsp;&nbsp; 1.1. Yearly Spotify Listening Trends
+</h3>
 
 
 
@@ -162,7 +159,7 @@ ORDER BY YEAR ASC;
 ---
 
 
-<h3>1.2 Yearly Spotify Listening Trends</h3>
+<h3>1.2 Monthly Spotify Listening Trends</h3>
 
 
 <h5>Script to pull monthly listening stats:</h5> 
@@ -271,3 +268,10 @@ ORDER BY 1,2,3,4,5,6;
 
 ---
 
+
+      
+<h3> 
+2. Artists, Songs, and Genres <br />
+&nbsp;&nbsp;&nbsp;&nbsp; 2.1. Skipping Behavior<br />
+&nbsp;&nbsp;&nbsp;&nbsp; 2.1.1 Device-Specific Skipping Patterns 
+</h3>
