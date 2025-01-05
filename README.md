@@ -62,9 +62,9 @@ Part 2. Analyzing Spotify Data Using SQL
 <h2>Project walk-through:</h2>
 
 <ol>
-  <li><h4>Listening Trends Over Time
+  <li><h3>Listening Trends Over Time
     <ol type="1">
-      <li>Yearly Spotify Listening Trends</h4></li>
+      <li>Yearly Spotify Listening Trends</h3></li>
     </ol>
   </li>
 </ol>
@@ -162,7 +162,7 @@ ORDER BY YEAR ASC;
 ---
 
 
-<h4>1.2 Yearly Spotify Listening Trends</h4>
+<h3>1.2 Yearly Spotify Listening Trends</h3>
 
 
 <h5>Script to pull monthly listening stats:</h5> 
@@ -190,5 +190,47 @@ ORDER BY YEAR, MONTH, season ASC;
 <p align="center">
 <img src="/images/1.2listening_by_season.png" />
 <br />
+
+<h3>1.3 Weekly Listening Habits</h3>
+
+
+<h5>Script to pull weekly listening stats:</h5> 
+
+```sql
+SELECT 
+    TO_CHAR(DATE, 'DY') AS abbreviated_day_name,
+    YEAR,
+    ROUND(SUM(MIN_PLAYED)/60,2) AS hours_played,
+    CASE 
+        WHEN TO_CHAR(DATE, 'DY') = 'Mon' THEN 1
+        WHEN TO_CHAR(DATE, 'DY') = 'Tue' THEN 2
+        WHEN TO_CHAR(DATE, 'DY') = 'Wed' THEN 3
+        WHEN TO_CHAR(DATE, 'DY') = 'Thu' THEN 4
+        WHEN TO_CHAR(DATE, 'DY') = 'Fri' THEN 5
+        WHEN TO_CHAR(DATE, 'DY') = 'Sat' THEN 6
+        WHEN TO_CHAR(DATE, 'DY') = 'Sun' THEN 7
+    END AS day_order
+FROM "SAMPLE_SCHEMA"."PUBLIC"."SPOTIFY_WRAPPED"
+GROUP BY 1,2,7
+ORDER BY day_order, YEAR ASC;
+
+```
+
+<h3>💡 Learnings:</h3>
+<p>My listening habits peak on weekdays, with Friday being the most active day. This could be attributed to the lighter workload on Fridays, which allows me to use music as background noise while I focus on less mentally demanding tasks.</p>
+<p>However, over time, my listening patterns have shifted significantly:</p>
+
+- <b>2017–2019:</b> Listening was highly concentrated on weekdays, especially Friday, which consistently dominated as the most active day (~ 21% of total listening). Weekends saw minimal activity during this period.<br />
+- <b>2020:</b> The pandemic disrupted established patterns. Listening became more evenly distributed across the week, with notable increases on weekends and even weekdays like Tuesday (23.03%), likely reflecting changes in daily routines during the work-from-home period.<br />
+- <b>2021–2022: </b>Weekend listening grew significantly, particularly on Saturdays in 2022, which accounted for 24.90% of total listening time. This marked a shift toward leisure-focused listening habits.<br />
+- <b>2023–2024: </b>Sunday emerged as the most prominent day, growing from just ~4% of total listening time in 2018 to a striking 17.65% in 2024. This shift can largely be attributed to my regular running sessions on weekends (Sundays - long run days), which started in 2023 and have significantly increased my listening time during these days.<br />
+<p>These changes reflect a gradual move away from weekday-focused listening to a more weekend-centered pattern, influenced by lifestyle changes such as running.</p>
+<p align="center">
+<img src="/images/1.3weekly_listening.png" />
+<br />
+<img src="/images/1.3weekly_listening_yoy.png" />
+<br />
+---
+
 
 ---
